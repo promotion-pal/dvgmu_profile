@@ -2,6 +2,10 @@ FROM node:22-alpine
 
 WORKDIR /app
 
+RUN echo "auto-install-peers=true" > .npmrc && \
+    echo "strict-peer-dependencies=false" >> .npmrc && \
+    echo "ignore-scripts=true" >> .npmrc
+
 RUN npm install -g pnpm
 
 COPY package*.json ./
