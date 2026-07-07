@@ -1,0 +1,22 @@
+services:
+  profile-web:
+    container_name: "profile-web"
+    build:
+      context: "./profile-web"
+      dockerfile: Dockerfile
+    networks:
+      - traefik-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.profile-web.rule=Host(`profile.dvgmu.promotion-pal.ru`)"
+      - "traefik.http.routers.profile-web.entrypoints=web"
+      - "traefik.http.routers.profile-web.middlewares=redirect-to-https"
+      - "traefik.http.routers.profile-web-secure.rule=Host(`profile.dvgmu.promotion-pal.ru`)"
+      - "traefik.http.routers.profile-web-secure.entrypoints=websecure"
+      - "traefik.http.routers.profile-web-secure.tls.certresolver=letsencrypt"
+      - "traefik.http.services.profile-web.loadbalancer.server.port=3000"
+
+networks:
+  traefik-network:
+    external: true
+    name: traefik-network
