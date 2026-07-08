@@ -22,9 +22,21 @@ class Profile {
             .slice(0, 2);
     }
 }
+class ProfileSocial {
+    email: string;
+    phone: string;
+    max: string;
+
+    constructor(email: string, phone: string, max: string) {
+        this.email = phone;
+        this.phone = phone;
+        this.max = max;
+    }
+}
 
 const PROFILES = [
-    new Profile("Ростислав", "Коноплев", 23),
-    new Profile("Иван", "Петров", 25),
-    new Profile("Мария", "Иванова", 22),
-];
+    {
+        init: new Profile("Ростислав", "Коноплев", 23),
+        social: new ProfileSocial("rostvac@gmail.com", "79941387422", ""),
+    }
+]
